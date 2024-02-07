@@ -214,7 +214,38 @@
         </header>
 
         <div class="post-content">
-            <h1 id="《汇编语言》第二章"><a href="#《汇编语言》第二章" class="headerlink" title="《汇编语言》第二章"></a>《汇编语言》第二章</h1><h2 id="x86处理器架构"><a href="#x86处理器架构" class="headerlink" title="x86处理器架构"></a>x86处理器架构</h2>
+            <h1 id="《汇编语言》第二章"><a href="#《汇编语言》第二章" class="headerlink" title="《汇编语言》第二章"></a>《汇编语言》第二章</h1><hr>
+<h2 id="x86处理器架构"><a href="#x86处理器架构" class="headerlink" title="x86处理器架构"></a>x86处理器架构</h2><h3 id="基本微机设计"><a href="#基本微机设计" class="headerlink" title="基本微机设计"></a>基本微机设计</h3><p>中央处理单元（Central Processor Unit,CPU）是进行算术和逻辑运算的部件，包含了有限数量的存储位置————称为寄存器（register），一个高频时钟，一个控制单元，以及一个算术逻辑单元。</p>
+<ul>
+<li>时钟（clock）对CPU内部操作与其他系统组件进行同步。</li>
+<li>控制单元（Control Unit，CU）协调参与机器指令执行的步骤序列。</li>
+<li>算术逻辑单元（Arithmetic Logic Unit，ALU）执行算术运算，如加减法，以及逻辑运算，如AND（与）、OR（或）和NOT（非）。</li>
+</ul>
+<p>内存存储单元（memory storage unit）用于在程序运行时保存指令和数据。存储单元接受来自CPU的数据请求，将数据从随机访问存储器（Random Access Memory，RAM）传输到CPU，且可从CPU传输到内存。</p>
+<p>总线（bus）是一组并行传输线，通常包含四类：数据、I/O、控制、以及地址。</p>
+<ul>
+<li>数据总线在CPU与内存之间传输指令和数据。</li>
+<li>I/O总线在CPU与系统输入/输出设备之间传输数据。</li>
+<li>控制总线采用二进制信号对所有连接在系统总线上的设备进行同步。</li>
+<li>地址总线在当前执行指令在CPU与内存之间传输数据时用于保存指令和数据的地址。</li>
+</ul>
+<p>与CPU和系统总线相关的每一个操作都是由一个恒定频率的内部时钟来同步的。机器指令的基本时间单位是机器周期（machine cycle）或时钟周期（clock cycle）。</p>
+<h3 id="指令执行周期"><a href="#指令执行周期" class="headerlink" title="指令执行周期"></a>指令执行周期</h3><p>CPU需要经过一系列预先定义好的步骤才能执行完成一条机器指令，这称为指令执行周期（instruction execution cycle），执行的步骤如下：</p>
+<ol>
+<li>首先，CPU从被称为指令队列（instruction<br>queue）的内存区域中取得指令，之后立即将指令指针递增。</li>
+<li>其次，CPU根据指令的二进制位模式对其进行<strong>译码</strong>。指令的位模式可能会表示该指令有操作数（输入值）。</li>
+<li>如果有操作数，CPU就从寄存器和内存中取得操作数。</li>
+<li>再次，使用步骤三取得的操作数，CPU执行该指令。此步骤还更新一些状态标志。</li>
+<li>最后，如果输出操作数也是该指令的一部分，则CPU还需要将执行结果存放在该操作数中。<br>通常上述过程简化为三个步骤：取指（fetch）、译码（decode）和执行（execute）。</li>
+</ol>
+<h3 id="读取内存"><a href="#读取内存" class="headerlink" title="读取内存"></a>读取内存</h3><p>从内存读取一个值，需要经过如下步骤：</p>
+<ol>
+<li>将想要读取值的地址放到地址总线上。</li>
+<li>将处理器的RD（读）引脚置为有效。</li>
+<li>等待一个时钟周期，以便于存储器芯片给予响应。</li>
+<li>将数据从数据总线复制到目的操作数。<br>上述每一步一般需要一个时钟周期。</li>
+</ol>
+
         </div>
 
         
